@@ -34,12 +34,9 @@
 
 
     <br>
-    <ion-button id="alertaRegistro">Registrarse</ion-button>
-    <ion-alert 
-    trigger="alertaRegistro" 
-    header="Usuario creado correctamente" 
-    subHeader="Se le redireccionará al login" 
-    [buttons]="alertButtons"></ion-alert>
+    <ion-button (click)="alertaRegistro()" id="alertaRegistro">Registrarse</ion-button>
+
+    
 
   </div>
 </ion-content>
