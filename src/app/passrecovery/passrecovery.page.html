@@ -1,9 +1,9 @@
 <ion-content [fullscreen]="true">
   <header style="padding:5%;">
-  
-    
+
+
   </header>
-  
+
   <div id="container">
     <div class="container" style="padding: 5%;">
       <ion-title>Recuperacion de contraseña</ion-title>
@@ -13,14 +13,19 @@
     </div>
 
 
-    
-    <div style="padding: 10%;">
-      <ion-input label="Usuario" labelPlacement="stacked" [counter]="true" ></ion-input>  
-     
+
+    <div style="padding: 15%;">
+      <ion-item>
+        <ion-label position="floating">Usuario</ion-label>
+        <ion-input type="text" id="login" required></ion-input>
+      </ion-item>
+      
+      <ion-button (click)="alertaRecovery()" id="alertaRecovery" style="margin-bottom: 5%; margin-top: 5%;" [routerLink]="['/home']" color="dark">Recuperar</ion-button>
+      <br>
+      <a [routerLink]="['/login']">Recordé mi contraseña</a>
     </div>
-    <ion-button style="margin-bottom: 5%;" [routerLink]="['/home']" color="dark">Recuperar</ion-button>
-    <br>
-    <a [routerLink]="['/login']">Recordé mi contraseña</a>
+    
+    
   </div>
 
 </ion-content>
