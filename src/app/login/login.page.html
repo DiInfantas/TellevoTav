@@ -1,21 +1,42 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Login
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-    <ion-button [routerLink]="['/passrecovery']" color="dark">Ingreso App</ion-button>
+    <div class="container" style="padding: 5%;">
+      <ion-title>¡Bienvenido a TeLLevoApp!</ion-title>
+      <br>
+      <p>Ingrese sus datos</p>
+      <br>
+    </div>
+
+    <div style="padding: 15%;">
+      <form>
+        <ion-item>
+          <ion-label position="floating">Usuario</ion-label>
+          <ion-input type="text" id="login"  required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input  type="password" required></ion-input>
+        </ion-item>
+        <ion-button (click)="toInicio()"  color="dark">Ingresar</ion-button>
+      </form>
+
+    </div>
+
+    <br>
+    <a [routerLink]="['/passrecovery']">Olvidé mi contraseña</a>
   </div>
+
+
+
+
+
 </ion-content>
