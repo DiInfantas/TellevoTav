@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Login
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <div class="container" style="padding: 5%;">
+      <ion-title>¡Bienvenido a TeLLevoApp!</ion-title>
+      <br>
+      <p>Ingrese sus datos</p>
+      <br>
+    </div>
+
+    <div style="padding: 15%;">
+      
+      <form>
+
+        <ion-item>
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input type="text" id="login"  required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input type="password" required></ion-input>
+        </ion-item>
+        <ion-button (click)="toInicio()"  color="dark">Ingresar</ion-button>
+      </form>
+
+    </div>
+
+    <br>
+    <a [routerLink]="['/register']">Crear cuenta</a>
+    <br>
+    <a [routerLink]="['/resetpassword']">Olvidé mi contraseña</a>
+    
+  </div>
+
+
+
+
+
+</ion-content>
