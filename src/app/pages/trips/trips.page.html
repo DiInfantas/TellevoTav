@@ -1,5 +1,8 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
     <ion-title>inicio</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -27,6 +30,6 @@
       Viaje a cargo de Bob Esponja
     </ion-card-content>
     <ion-button fill="clear">Ver detalle</ion-button>
-    <ion-button color="dark">Crear Viaje</ion-button>
+    <ion-button [routerLink]="['/add']" color="black">Crear Viaje</ion-button>
   </ion-card>
 </ion-content> 
