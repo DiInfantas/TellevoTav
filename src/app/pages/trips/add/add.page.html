@@ -1,7 +1,9 @@
 <ion-header [translucent]="true">
 
   <ion-toolbar>
-
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
    <ion-title>createtrip</ion-title>
 
   </ion-toolbar>
@@ -78,7 +80,7 @@
 
     <br>
 
-    <ion-button color="dark">Iniciar Viaje</ion-button>
+    <ion-button [routerLink]="['/trips']">Iniciar Viaje</ion-button>
 
    </form>
 
