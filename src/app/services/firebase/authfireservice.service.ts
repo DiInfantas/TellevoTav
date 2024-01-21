@@ -15,24 +15,38 @@ export class AuthfireserviceService {
     private router:Router
   ) { }
 
+  async getCurrentUser() {
+    return this.auth.currentUser;
+  }
+
+  async getUserType(userId: string) {
+    try {
+      const userDoc = await this.firestore.collection('users').doc(userId).get().toPromise();
+      if (userDoc) {
+        const userData: { tipo: string } = userDoc.data() as { tipo: string };
+        return userData.tipo;
+      } else {
+        console.error("Documento de usuario no encontrado.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener el tipo de usuario:", error);
+      return null;
+    }
+  }
+  
+
+
+
   async login(email:string, password:string) {
     try {
       const userCredential = await this.auth.signInWithEmailAndPassword(email,password);
       console.log("SESION INICIADA");
-      this.router.navigate(['trips']);
     } catch (error) {
       console.error("ERROR AL INICIAR SESION");
-      console.log(email,password);
     }
   }
-  async register(email:string, password:string) { 
-    try {
-      const userCredential = await this.auth.createUserWithEmailAndPassword(email,password);
-      console.log("USUARIO CREADO");
-    } catch (error) {
-      console.error("ERROR AL CREAR USUARIO");
-    }
-  }
+
 
   async registerUser(email: string, password: string, userType: string, nombreCompleto: string, telefono: string) {
     try {
@@ -53,13 +67,6 @@ export class AuthfireserviceService {
       } else {
         console.error("Usuario nulo");
       }
-  
-      // // para enviar al user a su respectiva pagina
-      // if (userType === 'conductor') {
-      //   this.router.navigate(['/conductor']);
-      // } else if (userType === 'pasajero') {
-      //   this.router.navigate(['/pasajero']);
-      // }
     } catch (error) {
       console.log(error);
     }
@@ -73,6 +80,4 @@ export class AuthfireserviceService {
   getDetails(data: any ){
     return this.firestore.collection("users").doc(data.uid).valueChanges();
   }
-
-
 }
