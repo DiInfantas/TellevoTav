@@ -19,6 +19,7 @@ export class TripsPage implements OnInit {
 
   ngOnInit() {
     this.listar();
+    
   }
 
   listar(){
