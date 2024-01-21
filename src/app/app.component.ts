@@ -17,13 +17,13 @@ export class AppComponent {
     this.login();
   }
   login(): void {
-    this.userService.HttpClient().subscribe(
-      (response) => {
+    this.userService.getRandomUser().subscribe(
+      (response: any) => { // Especifica el tipo 'any' para 'response'
         // Manejar la respuesta exitosa del servidor aquí
         this.user = response.results[0];
         console.log('Login exitoso', this.user);
       },
-      (error) => {
+      (error: any) => { // Especifica el tipo 'any' para 'error'
         // Manejar errores de la solicitud aquí
         console.error('Error en el login', error);
       }
