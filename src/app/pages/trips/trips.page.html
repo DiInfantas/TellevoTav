@@ -2,12 +2,16 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
+      
     </ion-buttons>
+    
     <ion-title>inicio</ion-title>
+    
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  
   <ion-card>
     <ion-card-header>
       <ion-card-title>Desde Puente alto hacia providencia</ion-card-title>
@@ -20,6 +24,7 @@
     <ion-button fill="clear" [routerLink]="['/trips/detail']">Ver detalle</ion-button>
   </ion-card>
 
+  
 
 
   <ion-card *ngFor="let aux of listaViajes">
