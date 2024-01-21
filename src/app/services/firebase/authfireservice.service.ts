@@ -15,19 +15,63 @@ export class AuthfireserviceService {
     private router:Router
   ) { }
 
+  async getCurrentUser() {
+    return this.auth.currentUser;
+  }
+
+  async getUserType(userId: string) {
+    try {
+      const userDoc = await this.firestore.collection('users').doc(userId).get().toPromise();
+      if (userDoc) {
+        const userData: { tipo: string } = userDoc.data() as { tipo: string };
+        return userData.tipo;
+      } else {
+        console.error("Documento de usuario no encontrado.");
+        return null;
+      }
+    } catch (error) {
+      console.error("Error al obtener el tipo de usuario:", error);
+      return null;
+    }
+  }
+  
+
+
+
   async login(email:string, password:string) {
     try {
       const userCredential = await this.auth.signInWithEmailAndPassword(email,password);
       console.log("SESION INICIADA");
-      this.router.navigate(['trips']);
     } catch (error) {
       console.error("ERROR AL INICIAR SESION");
-      console.log(email,password);
     }
   }
-  register(data : any){
-    return this.auth.createUserWithEmailAndPassword(data.email, data.password);
+
+
+  async registerUser(email: string, password: string, userType: string, nombreCompleto: string, telefono: string) {
+    try {
+      // Registrar al usuario en Firebase 
+      const result = await this.auth.createUserWithEmailAndPassword(email, password);
+      const user = result.user;
+  
+      // verifica que el user exista antes
+      if (user) {
+  
+        // Guardar información adicional en la base de datos
+        await this.firestore.collection('users').doc(user.uid).set({
+          tipo: userType,
+          nombreCompleto: nombreCompleto,
+          telefono: telefono,
+          // Se pide nombre y apellido y despues se junta en la variable 'nombreCompleto'.
+        });
+      } else {
+        console.error("Usuario nulo");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
+
 
   saveDetails(data:any){
     return this.firestore.collection("users").doc(data.uid).set(data);
@@ -36,6 +80,4 @@ export class AuthfireserviceService {
   getDetails(data: any ){
     return this.firestore.collection("users").doc(data.uid).valueChanges();
   }
-
-
 }
