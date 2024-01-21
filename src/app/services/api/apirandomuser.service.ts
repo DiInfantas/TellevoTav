@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,10 +14,13 @@ export class ApirandomuserService {
 
   constructor(private http: HttpClient) { }
 
+  
 
-  getRandomUser(): Observable<any> {
-    // Realizar una solicitud GET a la API de RandomUser
-    return this.http.get(this.apiUrl);
+
+  getFourUserData(): Observable<any> {
+    const url = `${this.apiUrl}?results=1`;
+
+    return this.http.get(url);
   }
 }
 
