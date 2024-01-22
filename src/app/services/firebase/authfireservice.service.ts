@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +11,8 @@ export class AuthfireserviceService {
   constructor(
     public firestore : AngularFirestore,
     public auth : AngularFireAuth,
-    private router:Router
+    private router:Router,
+    private afAuth: AngularFireAuth
   ) { }
 
   async getCurrentUser() {
@@ -70,6 +70,16 @@ export class AuthfireserviceService {
     } catch (error) {
       console.log(error);
     }
+  }
+
+  logout() {
+
+    this.afAuth.signOut().then(() => {
+      
+      console.log('Sesión cerrada exitosamente.');
+    }).catch(error => {
+      console.error('Error al cerrar sesión:', error);
+    });
   }
 
 
