@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Iconductor } from 'src/app/interfaces/iconductor';
+import { Iviaje } from 'src/app/interfaces/iviaje';
+import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 
 @Component({
   selector: 'app-detail',
@@ -7,9 +11,64 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetailPage implements OnInit {
 
-  constructor() { }
+  viaje: Iviaje = {} as Iviaje;
+  usuario: Iconductor | undefined;
+
+  constructor(
+    private fire: CrudfirebaseService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+
+
+  ) { }
 
   ngOnInit() {
+    const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
+    
+    console.log(viajeId);
   }
+
+  ionViewWillEnter() {
+    this.getViaje(); // Asegúrate de que no estás pasando ningún argumento aquí
+  }
+  
+
+  getId() {
+    let url = this.router.url;
+    let aux = url.split("/", 4);
+    let id = aux[3];
+    return id;
+  }
+
+  getUsuario() {
+    // Asegúrate de que this.viaje tenga un valor antes de acceder a this.viaje.idconductor
+    if (this.viaje && this.viaje.idconductor) {
+      const usuarioId = this.viaje.idconductor;
+      this.fire.getUsuarioById(usuarioId).subscribe((usuario) => {
+        console.log(usuario);
+        this.usuario = usuario as Iconductor || {} as Iconductor;
+      });
+    } else {
+      // Manejar el caso donde this.viaje es undefined o this.viaje.idconductor es undefined
+      console.error("No se pudo obtener la información del viaje o del conductor");
+    }
+  }
+  
+  getViaje() {
+    const viajeId = this.getId();
+    this.fire.getViajeById(viajeId).subscribe((viaje) => {
+      console.log(viaje);
+      this.viaje = viaje as Iviaje || {} as Iviaje;
+    });
+  }
+
+  eliminar() {
+    const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (viajeId) {
+      this.fire.deleteDocument('Viajes', viajeId);
+      this.router.navigate(['/trips']);
+    }
+  }
+
 
 }

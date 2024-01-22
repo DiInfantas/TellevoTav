@@ -51,7 +51,6 @@ export class LoginPage implements OnInit {
       }
     } catch (error) {
       console.log(error);
-      console.log("ÄAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
     }
   }
 
