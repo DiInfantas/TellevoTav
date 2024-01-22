@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-driverdetail',
   templateUrl: './driverdetail.page.html',
@@ -9,15 +9,16 @@ import { AuthfireserviceService } from 'src/app/services/firebase/authfireservic
 export class DriverdetailPage implements OnInit {
 
   constructor(
-    private authService: AuthfireserviceService
+    private authService: AuthfireserviceService,
+    private router : Router
   ) {
   }
   ngOnInit() {
   }
 
   cerrarSesion() {
-    // Llama a la función de tu servicio de autenticación para cerrar sesión
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }
 

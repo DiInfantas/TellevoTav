@@ -41,7 +41,6 @@ export class DetailPage implements OnInit {
   }
 
   getUsuario() {
-    // Asegúrate de que this.viaje tenga un valor antes de acceder a this.viaje.idconductor
     if (this.viaje && this.viaje.idconductor) {
       const usuarioId = this.viaje.idconductor;
       this.fire.getUsuarioById(usuarioId).subscribe((usuario) => {
@@ -49,7 +48,6 @@ export class DetailPage implements OnInit {
         this.usuario = usuario as Iconductor || {} as Iconductor;
       });
     } else {
-      // Manejar el caso donde this.viaje es undefined o this.viaje.idconductor es undefined
       console.error("No se pudo obtener la información del viaje o del conductor");
     }
   }
