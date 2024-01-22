@@ -19,5 +19,10 @@ export class DriverdetailPage implements OnInit {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
+
+  redireccionarAAdd(): void {
+    this.router.navigate(['/add']);
+  }
+
 }
 

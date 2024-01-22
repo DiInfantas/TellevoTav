@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Inicio</ion-title>
+    <ion-title>Home Conductor</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="cerrarSesion()">
         <ion-icon name="log-out-outline"></ion-icon>
@@ -13,9 +13,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-
-  
   <ion-card>
     <ion-card-header>
       <ion-card-title>Desde Puente alto hacia providencia</ion-card-title>
@@ -27,5 +24,4 @@
     </ion-card-content>
     <ion-button fill="clear" [routerLink]="['/trips/detail']">Ver detalle</ion-button>
   </ion-card>
-
 </ion-content>

@@ -23,7 +23,11 @@ const routes: Routes = [
   {
     path: 'driverdetail',
     loadChildren: () => import('./driverdetail/driverdetail.module').then( m => m.DriverdetailPageModule)
+  },  {
+    path: 'driverhome',
+    loadChildren: () => import('./driverhome/driverhome.module').then( m => m.DriverhomePageModule)
   }
+
 
 
 ];
