@@ -15,7 +15,6 @@ export class DriverdetailPage implements OnInit {
   }
   ngOnInit() {
   }
-
   cerrarSesion() {
     this.authService.logout();
     this.router.navigate(['/login']);
