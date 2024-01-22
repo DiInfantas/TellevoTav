@@ -14,9 +14,8 @@ export class DriverdetailPage implements OnInit {
   }
   ngOnInit() {
   }
-
   cerrarSesion() {
-    // Llama a la función de tu servicio de autenticación para cerrar sesión
+
     this.authService.logout();
   }
 }
