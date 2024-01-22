@@ -29,6 +29,7 @@ export class LoginPage implements OnInit {
     try {
       // Verificar que se hayan proporcionado credenciales
       if (!this.emailValue || !this.passwordValue) {
+
         console.log("Por favor, ingrese correo electrónico y contraseña.");
         return;
       }
