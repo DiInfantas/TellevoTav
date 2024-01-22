@@ -18,7 +18,13 @@ const routes: Routes = [
   {
     path: 'update/:id',
     loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule)
+  },
+
+  {
+    path: 'driverdetail',
+    loadChildren: () => import('./driverdetail/driverdetail.module').then( m => m.DriverdetailPageModule)
   }
+
 
 ];
 

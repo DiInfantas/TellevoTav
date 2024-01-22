@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
 
 
@@ -31,28 +32,36 @@ export class LoginPage implements OnInit {
   
   async login() {
     try {
+      // Verificar que se hayan proporcionado credenciales
+      if (!this.emailValue || !this.passwordValue) {
+        console.log("Por favor, ingrese correo electrónico y contraseña.");
+        return;
+      }
+  
       await this.fireService.login(this.emailValue, this.passwordValue);
       const user = await this.fireService.getCurrentUser();
-
+  
       if (user) {
         const userType = await this.fireService.getUserType(user.uid);
-
-        if (userType === 'conductor') {
+  
+        if (userType === 'pasajero') {
           this.router.navigate(['/trips']);
+        } else if (userType === 'conductor') {
+          this.router.navigate(['/trips/driverdetail']);
           console.log(userType);
-        } else if (userType === 'pasajero') {
-          this.router.navigate(['/register']);
-        } else if (userType === '') {
-          console.log("no existe tipo de usuario");
-            
         } else {
           console.error("Tipo de usuario desconocido o no autenticado correctamente.");
+          // Redirigir a una página predeterminada en caso de tipo de usuario desconocido.
+          this.router.navigate(['/login']);
         }
       }
     } catch (error) {
       console.log(error);
+  
+      // Manejar el error de inicio de sesión, por ejemplo, mostrar un mensaje al usuario.
     }
   }
+  
 
 
 
