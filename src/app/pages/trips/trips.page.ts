@@ -42,6 +42,7 @@ export class TripsPage implements OnInit {
   cerrarSesion() {
     // Llama a la función de tu servicio de autenticación para cerrar sesión
     this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 

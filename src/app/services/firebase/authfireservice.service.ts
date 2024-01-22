@@ -62,7 +62,6 @@ export class AuthfireserviceService {
           tipo: userType,
           nombreCompleto: nombreCompleto,
           telefono: telefono,
-          // Se pide nombre y apellido y despues se junta en la variable 'nombreCompleto'.
         });
       } else {
         console.error("Usuario nulo");
@@ -74,8 +73,7 @@ export class AuthfireserviceService {
 
   logout() {
 
-    this.afAuth.signOut().then(() => {
-      
+    this.afAuth.signOut().then(() => {     
       console.log('Sesión cerrada exitosamente.');
     }).catch(error => {
       console.error('Error al cerrar sesión:', error);
