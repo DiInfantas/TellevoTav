@@ -64,6 +64,5 @@ export class DriverdetailPage implements OnInit {
       this.fire.deleteDocument('Viajes', viajeId);
       this.router.navigate(['/trips']);
     }
-
+  }
 }
-

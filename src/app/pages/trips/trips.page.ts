@@ -24,6 +24,10 @@ export class TripsPage implements OnInit {
     this.listar();
     
   }
+  redireccionarAdd(): void {
+    // Redirecciona a la página 'add'
+    this.router.navigate(['/add']);
+  }
 
   listar(){
     this.fire.getCollection("Viajes").subscribe((aux) => {
