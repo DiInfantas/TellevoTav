@@ -30,7 +30,6 @@ export class DriverdetailPage implements OnInit {
   ionViewWillEnter() {
     this.getViaje(); // Asegúrate de que no estás pasando ningún argumento aquí
   }
-  
 
   getId() {
     let url = this.router.url;
@@ -65,7 +64,6 @@ export class DriverdetailPage implements OnInit {
       this.fire.deleteDocument('Viajes', viajeId);
       this.router.navigate(['/trips']);
     }
-  }
 
 }
 
