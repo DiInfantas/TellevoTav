@@ -31,10 +31,6 @@ const routes: Routes = [
     path: 'loading',
     loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
   },
-  {
-    path: 'add',
-    loadChildren: () => import('./pages/trips/add/add.module').then( m => m.AddPageModule)
-  },
 
 ];
 

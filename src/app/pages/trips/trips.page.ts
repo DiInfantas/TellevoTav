@@ -28,5 +28,13 @@ export class TripsPage implements OnInit {
     })
   }
 
+  seeDetail(viajeId: string | undefined) {
+    
+    if (viajeId) {
+      // Navegar a la página de detalles con el ID del viaje
+      this.router.navigate(['/trips/detail', viajeId]);
+    }
+  }
+
 
 }

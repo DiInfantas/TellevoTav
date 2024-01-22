@@ -1,64 +1,36 @@
-<ion-header [translucent]="true">
+<!-- detail.page.html -->
 
+<ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-   <ion-title>Detalle Viaje</ion-title>
-
+    <ion-title>Detalles del Viaje</ion-title>
   </ion-toolbar>
-
 </ion-header>
 
+<ion-content class="ion-padding">
 
-
-<ion-content [fullscreen]="true">
-
-  <ion-header collapse="condense">
-
-   <ion-toolbar>
-
-    <ion-title size="large">Detalle Viaje</ion-title>
-
-   </ion-toolbar>
-  </ion-header>
-
-
-
+  <!-- Información del Viaje -->
   <ion-card>
-
-   <ion-card-header>
-
-    <ion-card-subtitle>-Destino: Duoc UC Providencia</ion-card-subtitle>
-
-    <ion-card-subtitle>-IdVehiculo: 1h32h1vj</ion-card-subtitle>
-
-    <ion-card-subtitle>-Lugar de Origen: Puente Alto</ion-card-subtitle>
-
-    <ion-card-subtitle>-Valor Viaje: 10500</ion-card-subtitle>
-
-    <ion-card-subtitle>-Contacto: +56 9 4324234234</ion-card-subtitle>
-
-   </ion-card-header>
-
-
-
-   <ion-card-content>
-
-   -Viaje a cargo de Juan Perez-
-
-   </ion-card-content>
-
-
-
-   <ion-button color="primary" fill="clear">Solicitar Asiento</ion-button>
-
-   <ion-button color="danger" fill="clear">Terminar Viaje</ion-button>
-
+    <ion-card-header>
+      <ion-card-title>Destino: {{ viaje?.destino }}</ion-card-title>
+      <ion-card-subtitle>Lugar de inicio: {{ viaje?.lugarinicio }}</ion-card-subtitle>
+      <ion-card-subtitle>Hora de salida: {{ viaje?.horasalida }}</ion-card-subtitle>
+      <ion-card-subtitle>Precio: {{ viaje?.precio }}</ion-card-subtitle>
+    </ion-card-header>
+    <!-- Otras propiedades del viaje -->
   </ion-card>
 
+  <!-- Información del Conductor -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Conductor: {{ usuario?.nombre }}</ion-card-title>
+      <ion-card-subtitle>Teléfono: {{ usuario?.telefono }}</ion-card-subtitle>
+    </ion-card-header>
+    <!-- Otras propiedades del conductor -->
+  </ion-card>
+
+  <!-- Otros elementos de la interfaz de usuario que desees agregar -->
+
+  <!-- Botón para eliminar el viaje -->
+  <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button>
+
 </ion-content>
-
-
-
- 
