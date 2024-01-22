@@ -11,7 +11,6 @@
 
 <ion-content class="ion-padding">
 
-  <!-- Información del Viaje -->
   <ion-card>
     <ion-card-header>
       <ion-card-title>Destino: {{ viaje.destino }}</ion-card-title>
@@ -24,17 +23,17 @@
   <ion-card>
     <img src="assets/img/recorrido.png" alt="">
   </ion-card>
-  <!-- Información del Conductor -->
+
   <ion-card>
     <ion-card-header>
       <ion-card-title>Conductor: {{ usuario?.nombreCompleto }}</ion-card-title>
       <ion-card-subtitle>Teléfono: {{ usuario?.telefono }}</ion-card-subtitle>
     </ion-card-header>
-    <!-- Otras propiedades del conductor -->
+    
   </ion-card>
 
-  <!-- Otros elementos de la interfaz de usuario que desees agregar -->
+  
 
-  <!-- Botón para eliminar el viaje -->
+  
   <ion-button expand="full" color="success" (click)="solicitarAsiento()">Solicitar Asiento</ion-button>
 </ion-content>

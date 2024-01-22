@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
 import { AlertController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { Iviaje } from 'src/app/interfaces/iviaje';
+import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 
 @Component({
   selector: 'app-driverhome',
@@ -9,17 +12,31 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./driverhome.page.scss'],
 })
 export class DriverhomePage implements OnInit {
+  currentTrip: Iviaje | undefined;
 
   constructor(
+    private activatedRoute: ActivatedRoute,
     private authService: AuthfireserviceService,
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private fire : CrudfirebaseService,
   ) { }
 
   ngOnInit() {
+    
+    this.activatedRoute.params.subscribe((params) => {
+      const tripId = params['id'];
+
+      if (tripId) {
+        
+        this.fire.getTripById('Viajes', tripId).subscribe((trip) => {
+          this.currentTrip = trip as Iviaje;
+        });
+      }
+    });
   }
 
-  redireccionarAAdd(): void {
+  redireccionarAAdd(){
     // Redirecciona a la página 'add'
     this.router.navigate(['/add']);
   }

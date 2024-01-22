@@ -43,13 +43,15 @@ export class AddPage implements OnInit {
         if (userId) {
           // Agrega el ID del conductor al formulario
           this.tripForm.patchValue({ idconductor: userId });
-          console.log(userId);
 
           // Guarda el nuevo viaje en Firebase
-          this.fire.createDocument('Viajes', this.tripForm.value);
+          this.fire.createDocument('Viajes', this.tripForm.value).then((docRef) => {
+            // Obtén el ID del viaje recién creado
+            const tripId = docRef.id;
 
-          // Redirige a la página de viajes después de agregar el viaje
-          this.router.navigate(['/trips/driverhome']);
+            // Redirige a la página de driverhome con el ID del viaje como parámetro
+            this.router.navigate(['/driverhome', tripId]);
+          });
         }
       });
     }

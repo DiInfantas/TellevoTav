@@ -38,5 +38,12 @@ export class CrudfirebaseService {
     return this.fire.collection<Iviaje>('Viajes').doc(viajeId).valueChanges();
   }
 
+  getTripById(collectionName: string, tripId: string): Observable<Iviaje | undefined> {
+    const collectionRef = this.fire.collection<Iviaje>('Viajes');
+    const tripDocRef = collectionRef.doc(tripId);
+
+    
+    return tripDocRef.valueChanges();
+  }
 
 }
