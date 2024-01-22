@@ -1,38 +1,39 @@
-<ion-header [translucent]="true">
+<!-- detail.page.html -->
+
+<ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Inicio</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="cerrarSesion()">
-        <ion-icon name="log-out-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Driver detail</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding">
 
-
-  
+  <!-- Información del Viaje -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Desde Puente alto hacia providencia</ion-card-title>
-      <ion-card-subtitle>Hora de salida: 15:30</ion-card-subtitle>
+      <ion-card-title>Destino: {{ viaje.destino }}</ion-card-title>
+      <ion-card-subtitle>Lugar de inicio: {{ viaje.lugarinicio }}</ion-card-subtitle>
+      <ion-card-subtitle>Hora de salida: {{ viaje.horasalida }}</ion-card-subtitle>
+      <ion-card-subtitle>Precio: {{ viaje.precio }}</ion-card-subtitle>
     </ion-card-header>
-  
-    <ion-card-content>
-      Viaje a cargo de Juan Perez
-    </ion-card-content>
-    <ion-button fill="clear" [routerLink]="['/trips/detail']">Ver detalle</ion-button>
+    <!-- Otras propiedades del viaje -->
   </ion-card>
 
+  <!-- Información del Conductor -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Conductor: {{ usuario?.nombre }}</ion-card-title>
+      <ion-card-subtitle>Teléfono: {{ usuario?.telefono }}</ion-card-subtitle>
+    </ion-card-header>
+    <!-- Otras propiedades del conductor -->
+  </ion-card>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button [routerLink]="['/add']" color="black">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  
+  <!-- Otros elementos de la interfaz de usuario que desees agregar -->
+
+  <!-- Botón para eliminar el viaje -->
+  <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button>
+
 </ion-content>

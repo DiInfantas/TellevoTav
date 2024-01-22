@@ -44,7 +44,7 @@ export class DetailPage implements OnInit {
     if (this.viaje && this.viaje.idconductor) {
       const usuarioId = this.viaje.idconductor;
       this.fire.getUsuarioById(usuarioId).subscribe((usuario) => {
-        console.log(usuario);
+        console.log(usuario, 'idusuario');
         this.usuario = usuario as Iconductor || {} as Iconductor;
       });
     } else {
