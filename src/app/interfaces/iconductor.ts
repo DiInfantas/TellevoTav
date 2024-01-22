@@ -1,5 +1,5 @@
 export interface Iconductor {
     id?: string;
-    nombre: string;
+    nombreCompleto: string;
     telefono: string;
 }

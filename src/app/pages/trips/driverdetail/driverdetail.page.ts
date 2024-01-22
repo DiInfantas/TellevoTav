@@ -65,5 +65,5 @@ export class DriverdetailPage implements OnInit {
       this.router.navigate(['/trips']);
     }
 
+  }
 }
-

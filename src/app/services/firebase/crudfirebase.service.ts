@@ -31,7 +31,7 @@ export class CrudfirebaseService {
   }
 
   getUsuarioById(usuarioId: string) {
-    return this.fire.collection<Iconductor>('Usuarios').doc(usuarioId).valueChanges();
+    return this.fire.collection<Iconductor>('users').doc(usuarioId).valueChanges();
   }
   
   getViajeById(viajeId: string): Observable<Iviaje | undefined> {

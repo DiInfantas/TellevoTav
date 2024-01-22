@@ -24,12 +24,11 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
     const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
-    
     console.log(viajeId);
   }
 
   ionViewWillEnter() {
-    this.getViaje(); // Asegúrate de que no estás pasando ningún argumento aquí
+    this.getViaje(this.getId());
   }
   
 
@@ -43,20 +42,30 @@ export class DetailPage implements OnInit {
   getUsuario() {
     if (this.viaje && this.viaje.idconductor) {
       const usuarioId = this.viaje.idconductor;
-      this.fire.getUsuarioById(usuarioId).subscribe((usuario) => {
-        console.log(usuario, 'idusuario');
-        this.usuario = usuario as Iconductor || {} as Iconductor;
+      console.log('ID del Conductor:', usuarioId);
+  
+      this.fire.getUsuarioById(usuarioId).subscribe({
+        next: (usuario) => {
+          if (usuario) {
+            console.log('Datos del usuario:', usuario);
+            this.usuario = usuario as Iconductor;
+          } else {
+            console.error('No se encontraron datos para el usuario con ID:', usuarioId);
+          }
+        },
+        error: (error) => {
+          console.error('Error al obtener datos del usuario:', error);
+        }
       });
     } else {
       console.error("No se pudo obtener la información del viaje o del conductor");
     }
   }
   
-  getViaje() {
-    const viajeId = this.getId();
+  getViaje(viajeId: string) {
     this.fire.getViajeById(viajeId).subscribe((viaje) => {
-      console.log(viaje);
-      this.viaje = viaje as Iviaje || {} as Iviaje;
+      this.viaje = viaje as Iviaje;
+      this.getUsuario(); // Llamar a getUsuario después de obtener el viaje
     });
   }
 
