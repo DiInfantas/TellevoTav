@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
         if (userType === 'pasajero') {
           this.router.navigate(['/trips']);
         } else if (userType === 'conductor') {
-          this.router.navigate(['/trips/driverdetail']);
+          this.router.navigate(['/trips/driverhome']);
           console.log(userType);
         } else {
           console.error("Tipo de usuario desconocido o no autenticado correctamente.");

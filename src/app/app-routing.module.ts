@@ -31,7 +31,10 @@ const routes: Routes = [
     path: 'loading',
     loadChildren: () => import('./pages/loading/loading.module').then( m => m.LoadingPageModule)
   },
-
+  {
+    path: 'add',
+    loadChildren: () => import('./pages/trips/trips.module').then(m => m.TripsPageModule)
+  }
 ];
 
 @NgModule({
