@@ -12,8 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DriverdetailPage } from './pages/trips/driverdetail/driverdetail.page';
+
 
 
 
@@ -22,7 +21,7 @@ import { DriverdetailPage } from './pages/trips/driverdetail/driverdetail.page';
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
   AngularFireModule.initializeApp(environment.firebaseConfig),
-  AngularFireAuthModule, AngularFirestoreModule, HttpClientModule, ReactiveFormsModule,  DriverdetailPage,
+  AngularFireAuthModule, AngularFirestoreModule, HttpClientModule
 ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
