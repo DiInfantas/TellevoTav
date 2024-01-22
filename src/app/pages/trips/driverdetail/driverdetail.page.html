@@ -3,7 +3,13 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Detalle Conductor</ion-title>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <!-- Agrega el botón de cerrar sesión -->
+      <ion-button (click)="cerrarSesion()">
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
 
 @Component({
   selector: 'app-driverdetail',
@@ -7,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./driverdetail.page.scss'],
 })
 export class DriverdetailPage implements OnInit {
-  listaViajes: any[] = [];
-  constructor() {
+
+  constructor(
+    private authService: AuthfireserviceService
+  ) {
   }
   ngOnInit() {
+  }
+
+  cerrarSesion() {
+    // Llama a la función de tu servicio de autenticación para cerrar sesión
+    this.authService.logout();
   }
 }
 
