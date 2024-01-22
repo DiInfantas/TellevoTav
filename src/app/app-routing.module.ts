@@ -33,7 +33,7 @@ const routes: Routes = [
   },
   {
     path: 'add',
-    loadChildren: () => import('./pages/trips/trips.module').then(m => m.TripsPageModule)
+    loadChildren: () => import('./pages/trips/add/add.module').then(m => m.AddPageModule)
   }
 ];
 

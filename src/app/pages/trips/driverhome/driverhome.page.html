@@ -21,4 +21,10 @@
     </ion-card-content>
     <ion-button fill="clear" [routerLink]="['/trips/driverdetail']">Ver detalle</ion-button>
   </ion-card>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="redireccionarAAdd()" color="black">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

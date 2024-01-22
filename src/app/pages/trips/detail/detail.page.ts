@@ -1,8 +1,11 @@
+// detail.page.ts
+
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconductor } from 'src/app/interfaces/iconductor';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-detail',
@@ -17,9 +20,8 @@ export class DetailPage implements OnInit {
   constructor(
     private fire: CrudfirebaseService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
-
-
+    private activatedRoute: ActivatedRoute,
+    private alertController: AlertController
   ) { }
 
   ngOnInit() {
@@ -30,7 +32,6 @@ export class DetailPage implements OnInit {
   ionViewWillEnter() {
     this.getViaje(this.getId());
   }
-  
 
   getId() {
     let url = this.router.url;
@@ -43,7 +44,7 @@ export class DetailPage implements OnInit {
     if (this.viaje && this.viaje.idconductor) {
       const usuarioId = this.viaje.idconductor;
       console.log('ID del Conductor:', usuarioId);
-  
+
       this.fire.getUsuarioById(usuarioId).subscribe({
         next: (usuario) => {
           if (usuario) {
@@ -61,7 +62,32 @@ export class DetailPage implements OnInit {
       console.error("No se pudo obtener la información del viaje o del conductor");
     }
   }
-  
+
+  async solicitarAsiento() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar',
+      message: '¿Estás seguro de que deseas solicitar un asiento?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Solicitud de asiento cancelada');
+          },
+        },
+        {
+          text: 'Solicitar',
+          handler: () => {
+            console.log('Solicitud de asiento realizada');
+            // Agrega aquí la lógica para solicitar el asiento
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
   getViaje(viajeId: string) {
     this.fire.getViajeById(viajeId).subscribe((viaje) => {
       this.viaje = viaje as Iviaje;
@@ -76,6 +102,4 @@ export class DetailPage implements OnInit {
       this.router.navigate(['/trips']);
     }
   }
-
-
 }
