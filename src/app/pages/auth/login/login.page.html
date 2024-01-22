@@ -9,14 +9,18 @@
 <ion-content [fullscreen]="true">
 
   <div id="container">
-    <div class="container" style="padding: 5%;">
-      <ion-title>¡Bienvenido a TeLLevoApp!</ion-title>
-      <br>
-      <p>Ingrese sus datos</p>
-      <br>
+    <div class="container">
+
+      <img src="assets/img/favlogo.png" alt="">
+      <div style="padding-top: 7%;">
+        <ion-title>¡Bienvenido a TeLLevoApp!</ion-title>
+        <br>
+        <p>Ingrese sus datos</p>
+      </div>
+      
     </div>
 
-    <div style="padding: 15%;">
+    <div style="padding-left: 15%; padding-right: 15%; padding-bottom: 5%;">
             
       <form>
         <ion-item>
@@ -27,20 +31,13 @@
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input type="password" [(ngModel)]="passwordValue" name="password"></ion-input>
         </ion-item>
-        <ion-button (click)="login()"  color="dark">Ingresar</ion-button>
+        <ion-button (click)="login()"  color="dark" style="padding-top: 2%;">Ingresar</ion-button>
       </form>
-
     </div>
-
-    <br>
     <a [routerLink]="['/register']">Crear cuenta</a>
     <br>
     <a [routerLink]="['/resetpassword']">Olvidé mi contraseña</a>
     
   </div>
-
-
-
-
-
+  
 </ion-content>

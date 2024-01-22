@@ -1,53 +1,58 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-    <ion-title>Selecciona tu Viaje</ion-title>
+    <ion-title>
+      Crear Viaje
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Selecciona tu Viaje</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div style="padding: 15%;">
-    <form>
-
-      <ion-item>
-        <ion-label position="floating">Lugar de Origen</ion-label>
-        <ion-input type="text" id="createtrip" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Lugar de Destino</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Precio</ion-label>
-        <ion-input type="number" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Pasajeros</ion-label>
-        <ion-input type="number" required></ion-input>
-      </ion-item>
-
+  <div id="container">
+    <div class="container" style="padding: 5%;">
+      <ion-title>Ingrese los detalles del viaje</ion-title>
       <br>
+    </div>
 
-      <ion-item>
-        <ion-label position="floating">IDPasajero</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
+    <div style="padding: 15%;">
 
-      <br>
+      <!-- create-trip.component.html -->
 
-      <ion-button [routerLink]="['/trips']">Iniciar Viaje</ion-button>
-    </form>
+
+      <form [formGroup]="tripForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+          <ion-label position="floating">Origen</ion-label>
+          <ion-input formControlName="lugarinicio" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Destino</ion-label>
+          <ion-input formControlName="destino" type="text"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Capacidad</ion-label>
+          <ion-input formControlName="capacidad" type="number"></ion-input>
+        </ion-item>
+
+        
+
+        <ion-item>
+          <ion-label position="floating">Hora de salida</ion-label>
+          <ion-input formControlName="horasalida" type="time"></ion-input>
+        </ion-item>
+
+        
+
+        <ion-item>
+          <ion-label position="floating">Precio</ion-label>
+          <ion-input formControlName="precio" type="text"></ion-input>
+        </ion-item>
+
+        <ion-button type="submit" expand="full">Crear Viaje</ion-button>
+      </form>
+
+
+    </div>
+
   </div>
+
 </ion-content>

@@ -25,11 +25,6 @@ export class LoginPage implements OnInit {
         password: ['', [Validators.required, Validators.minLength(6)]],
       })
     }
-
-  toInicio(){
-    this.router.navigate(['/trips'])
-  }
-  
   async login() {
     try {
       // Verificar que se hayan proporcionado credenciales
