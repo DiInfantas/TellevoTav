@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./driverdetail.page.scss'],
 })
 export class DriverdetailPage implements OnInit {
-
+  listaViajes: any[] = [];
   constructor() {
   }
   ngOnInit() {
