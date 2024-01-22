@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'update',
     loadChildren: () => import('./update/update.module').then( m => m.UpdatePageModule)
+  },  {
+    path: 'driverdetail',
+    loadChildren: () => import('./driverdetail/driverdetail.module').then( m => m.DriverdetailPageModule)
   }
+
 ];
 
 @NgModule({
