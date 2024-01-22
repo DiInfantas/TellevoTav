@@ -2,18 +2,24 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthfireserviceService {
 
+  user$!: Observable<any>;
+
   constructor(
     public firestore : AngularFirestore,
     public auth : AngularFireAuth,
     private router:Router,
     private afAuth: AngularFireAuth
-  ) { }
+  ) { 
+    this.user$ = this.afAuth.authState;
+  }
 
   async getCurrentUser() {
     return this.auth.currentUser;
@@ -88,4 +94,9 @@ export class AuthfireserviceService {
   getDetails(data: any ){
     return this.firestore.collection("users").doc(data.uid).valueChanges();
   }
+
+  getUserId(): Observable<string> {
+    return this.user$.pipe(map((user) => (user ? user.uid : '')));
+  }
+
 }
