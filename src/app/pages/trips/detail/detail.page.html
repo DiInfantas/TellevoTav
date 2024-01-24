@@ -1,5 +1,10 @@
 <!-- detail.page.html -->
 
+<head>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+</head>
+
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
@@ -20,9 +25,10 @@
       <ion-card-subtitle>Precio: {{ viaje.precio }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
-  <ion-card>
-    <img src="assets/img/recorrido.png" alt="">
-  </ion-card>
+
+  <ion-content>
+    <div id="map" style="height: 50%;"></div>
+  </ion-content>
 
   <ion-card>
     <ion-card-header>
