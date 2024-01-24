@@ -19,14 +19,16 @@
           <ion-card-subtitle>Hora de salida: {{ aux.horasalida }}</ion-card-subtitle>
           <ion-card-subtitle>Asientos disponibles: {{aux.capacidad}}</ion-card-subtitle>
         </ion-card-header>
-        <ion-chip>
+         <br>
+        
+        <ion-button fill="clear" (click)="seeDetail(aux.id)">Ver detalle</ion-button>   
+        
+        <ion-chip color="tertiary" style="text-align: end;">
           <ion-avatar>
             <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </ion-avatar>
           <ion-label>Datos conductor</ion-label>
-        </ion-chip> <br>
-        
-        <ion-button fill="clear" (click)="seeDetail(aux.id)">Ver detalle</ion-button>    
+        </ion-chip> 
       </ion-card>
     </ion-item>
   </ion-list>

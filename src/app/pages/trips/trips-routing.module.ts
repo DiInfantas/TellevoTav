@@ -27,7 +27,11 @@ const routes: Routes = [
   {
     path: 'driverhome',
     loadChildren: () => import('./driverhome/driverhome.module').then( m => m.DriverhomePageModule)
+  },  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
   }
+
 
 
 
