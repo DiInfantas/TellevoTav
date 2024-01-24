@@ -62,8 +62,15 @@ export class DriverdetailPage implements OnInit {
     const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
     if (viajeId) {
       this.fire.deleteDocument('Viajes', viajeId);
-      this.router.navigate(['/trips']);
+      console.log('Viaje eliminado correctamente');
+      this.router.navigate(['/trips/driverhome']);
     }
+  }
 
+  editarViaje() {
+    const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
+    if (viajeId) {
+      this.router.navigate(['/trips/update', viajeId]);
+    }
   }
 }
