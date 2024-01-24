@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Iconductor } from 'src/app/interfaces/iconductor';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
+import * as L from 'leaflet';
 
 @Component({
   selector: 'app-driverdetail',
@@ -10,6 +11,9 @@ import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.serv
   styleUrls: ['./driverdetail.page.scss'],
 })
 export class DriverdetailPage implements OnInit {
+  ionViewDidEnter() {
+    this.loadMap();
+  }
   viaje: Iviaje = {} as Iviaje;
   usuario: Iconductor | undefined;
 
@@ -65,5 +69,16 @@ export class DriverdetailPage implements OnInit {
       this.router.navigate(['/trips']);
     }
 
+  }
+  loadMap() {
+    const map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    L.marker([51.505, -0.09]).addTo(map)
+      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+      .openPopup();
   }
 }

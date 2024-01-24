@@ -1,6 +1,12 @@
 <!-- detail.page.html -->
 
 <!-- detail.page.html -->
+<head>
+  <!-- ... otras etiquetas head ... -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- ... otras etiquetas head ... -->
+</head>
+
 
 <ion-header>
   <ion-toolbar>
@@ -24,7 +30,7 @@
     </ion-card-header>
   </ion-card>
   <ion-card>
-    <img src="assets/img/recorrido.png" alt="">
+    <div id="map" style="height: 100%;"></div>
   </ion-card>
   <!-- Información del Conductor -->
   <ion-card>

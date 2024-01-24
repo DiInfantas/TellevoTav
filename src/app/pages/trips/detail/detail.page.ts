@@ -6,7 +6,8 @@ import { Iconductor } from 'src/app/interfaces/iconductor';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import { AlertController } from '@ionic/angular';
-import * as L from 'leaflet';
+import * as L from 'leaflet'; 
+
 
 
 
@@ -17,10 +18,7 @@ import * as L from 'leaflet';
 })
 export class DetailPage implements OnInit {
 
-  ionViewDidEnter() {
-    this.loadMap();
-  }
-  
+  addressToSearch: string = "Nombre de la dirección";
   viaje: Iviaje = {} as Iviaje;
   usuario: Iconductor | undefined;
 
@@ -34,6 +32,10 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(viajeId);
+  }
+
+  ionViewDidEnter() {
+    this.loadMap();
   }
 
   ionViewWillEnter() {
@@ -109,6 +111,9 @@ export class DetailPage implements OnInit {
       this.router.navigate(['/trips']);
     }
   }
+
+  
+  
   loadMap() {
     const map = L.map('map').setView([51.505, -0.09], 13);
 
@@ -120,5 +125,6 @@ export class DetailPage implements OnInit {
       .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
       .openPopup();
   }
-
 }
+
+
