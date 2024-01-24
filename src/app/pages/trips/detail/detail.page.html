@@ -26,20 +26,20 @@
     </ion-card-header>
   </ion-card>
 
-  <ion-card>
-    <div id="map" style="height: 50%;"></div>
-  </ion-card>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Conductor: {{ usuario?.nombreCompleto }}</ion-card-title>
-      <ion-card-subtitle>Teléfono: {{ usuario?.telefono }}</ion-card-subtitle>
-    </ion-card-header>
+  <ion-content>
+    <div id="map" style="height: 300px;"></div>
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Conductor: {{ usuario?.nombreCompleto }}</ion-card-title>
+        <ion-card-subtitle>Teléfono: {{ usuario?.telefono }}</ion-card-subtitle>
+      </ion-card-header>
+      
+    </ion-card>
+  
     
-  </ion-card>
-
   
+    
+    <ion-button expand="full" color="success" (click)="solicitarAsiento()">Solicitar Asiento</ion-button>
+  </ion-content>
 
-  
-  <ion-button expand="full" color="success" (click)="solicitarAsiento()">Solicitar Asiento</ion-button>
 </ion-content>

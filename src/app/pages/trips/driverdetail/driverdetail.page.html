@@ -30,10 +30,9 @@
       <ion-card-subtitle>Precio: {{ viaje.precio }}</ion-card-subtitle>
     </ion-card-header>
   </ion-card>
-  <ion-card>
-    <div id="map" style="height: 100%;"></div>
-  </ion-card>
-  <ion-button expand="full" color="light" (click)="editarViaje()">Editar Viaje</ion-button>
-  <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button>
-
+  <ion-content>
+    <div id="map" style="height: 50%;"></div>
+    <ion-button expand="full" color="light" (click)="editarViaje()">Editar Viaje</ion-button>
+  <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button> 
+  </ion-content>
 </ion-content>

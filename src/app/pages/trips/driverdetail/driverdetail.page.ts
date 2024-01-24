@@ -78,13 +78,13 @@ export class DriverdetailPage implements OnInit {
     }
   }
   loadMap() {
-    const map = L.map('map').setView([51.505, -0.09], 13);
+    const map = L.map('map').setView([-33.5983603,-70.5834729], 17);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    L.marker([51.505, -0.09]).addTo(map)
+    L.marker([-33.5983603,-70.5834729]).addTo(map)
       .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
       .openPopup();
   }
