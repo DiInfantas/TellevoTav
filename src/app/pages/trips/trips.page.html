@@ -10,13 +10,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-card *ngFor="let aux of listaViajes">
-    <ion-card-header>
-      <ion-card-title>{{ aux.destino }}</ion-card-title>
-      <ion-card-subtitle>{{ aux.horasalida }}</ion-card-subtitle>
-    </ion-card-header>
-    <ion-button fill="clear" (click)="seeDetail(aux.id)">Ver detalle</ion-button>    
-  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let aux of listaViajes">
+      <ion-card >
+        <ion-card-header>
+          <ion-card-title> Desde: {{ aux.lugarinicio }} <br> Destino:{{ aux.destino }} </ion-card-title>
+          <ion-card-subtitle>Hora de salida: {{ aux.horasalida }}</ion-card-subtitle>
+          <ion-card-subtitle>Asientos disponibles: {{aux.capacidad}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-chip>
+          <ion-avatar>
+            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+          </ion-avatar>
+          <ion-label>Datos conductor</ion-label>
+        </ion-chip> <br>
+        
+        <ion-button fill="clear" (click)="seeDetail(aux.id)">Ver detalle</ion-button>    
+      </ion-card>
+    </ion-item>
+  </ion-list>
+  
 
 
 </ion-content>

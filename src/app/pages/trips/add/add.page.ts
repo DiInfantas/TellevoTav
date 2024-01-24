@@ -50,7 +50,7 @@ export class AddPage implements OnInit {
             const tripId = docRef.id;
 
             // Redirige a la página de driverhome con el ID del viaje como parámetro
-            this.router.navigate(['/driverhome', tripId]);
+            this.router.navigate(['/trips/driverdetail' , tripId]);
           });
         }
       });

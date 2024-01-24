@@ -1,13 +1,43 @@
-<ion-header [translucent]="true">
+<!-- update.page.html -->
+
+<ion-header>
   <ion-toolbar>
-    <ion-title>update</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Viaje</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">update</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="tripForm">
+    <ion-item>
+      <ion-label position="floating">Capacidad</ion-label>
+      <ion-input formControlName="capacidad" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Destino</ion-label>
+      <ion-input formControlName="destino" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Hora de salida</ion-label>
+      <ion-input formControlName="horasalida" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Lugar de inicio</ion-label>
+      <ion-input formControlName="lugarinicio" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Precio</ion-label>
+      <ion-input formControlName="precio" type="text"></ion-input>
+    </ion-item>
+
+    <!-- Agrega otros campos según sea necesario -->
+
+    <ion-button expand="full" color="primary" (click)="guardarCambios()">Guardar Cambios</ion-button>
+  </form>
 </ion-content>
