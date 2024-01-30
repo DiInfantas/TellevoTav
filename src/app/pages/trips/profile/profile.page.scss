@@ -1,0 +1,14 @@
+.rounded-image-container {
+    width: 100px; /* ajusta el ancho según tus necesidades */
+    height: 100px; /* ajusta la altura según tus necesidades */
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 auto; /* esto centrará la imagen horizontalmente */
+  }
+  
+  .rounded-image {
+    width: 100%; /* asegúrate de que la imagen llene el contenedor redondeado */
+    height: 100%;
+    object-fit: cover; /* esto asegura que la imagen se ajuste sin deformarse */
+    border-radius: 50%;
+  }
