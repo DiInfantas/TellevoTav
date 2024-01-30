@@ -12,29 +12,33 @@
 <ion-content [fullscreen]="true">
 
   <ion-list>
-    <ion-item *ngFor="let aux of listaViajes">
-      <ion-card >
-        <ion-card-header>
-          <ion-card-title> Desde: {{ aux.lugarinicio }} <br> Destino:{{ aux.destino }} </ion-card-title>
-          <ion-card-subtitle>Hora de salida: {{ aux.horasalida }}</ion-card-subtitle>
-          <ion-card-subtitle>Asientos disponibles: {{aux.capacidad}}</ion-card-subtitle>
-        </ion-card-header>
-         <br>
-        
-        <ion-button fill="clear" (click)="seeDetail(aux.id)">Ver detalle</ion-button>   
-        
-        <ion-chip color="tertiary" style="text-align: end;">
-          <ion-avatar>
-            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-          </ion-avatar>
-          <ion-label>Datos conductor</ion-label>
-        </ion-chip> 
-      </ion-card>
-    </ion-item>
+
+      <ion-accordion-group expand="inset">
+        <ion-accordion *ngFor="let aux of listaViajes">
+          <ion-item slot="header">
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-label>{{ aux.lugarinicio }} --> {{ aux.destino }}</ion-label>
+            <ion-note slot="end">{{ aux.horasalida }}</ion-note>
+          </ion-item>
+          
+          <div class="ion-padding" slot="content">
+            <ion-label>
+              <h3>Conductor:</h3>
+              <h3>Hora de salida: {{ aux.horasalida }}</h3>
+              <p>Asientos restantes:{{ aux.capacidad }}</p>
+              <ion-badge color="medium" slot="end">{{ aux.precio }} CLP</ion-badge>
+            </ion-label>
+            
+            <br>
+            <ion-button  fill="outline" color="tertiary" slot="start" (click)="seeDetail(aux.id)">Ver detalle</ion-button> 
+            
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
   </ion-list>
-  
+
 
 
 </ion-content>
-
-

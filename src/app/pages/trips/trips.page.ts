@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ItemReorderEventDetail } from '@ionic/angular';
 
 @Component({
   selector: 'app-trips',
@@ -61,5 +61,10 @@ export class TripsPage implements OnInit {
     this.router.navigate(['/login']);
   }
   
+
+  handleReorder(ev: CustomEvent<ItemReorderEventDetail>) {
+    console.log('Dragged from index', ev.detail.from, 'to', ev.detail.to);
+    ev.detail.complete();
+  }
 }
 
