@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { Iconductor } from 'src/app/interfaces/iconductor';
+import { Isolicitud } from 'src/app/interfaces/isolicitud';
 import { Observable, map } from 'rxjs';
 
 
@@ -13,6 +14,24 @@ export class CrudfirebaseService {
   constructor(private fire: AngularFirestore) { }
 
 
+  createSolicitud(collectionName: string, data: Isolicitud) {
+    return this.fire.collection<Isolicitud>(collectionName).add(data)
+      .then((docRef) => {
+        console.log('Solicitud creada correctamente', docRef.id);
+      })
+      .catch((error) => {
+        console.error('Error al crear la solicitud', error);
+      });
+  }
+  
+  
+  getSolicitudesByViajeId(viajeId: string): Observable<Isolicitud[]> {
+    return this.fire.collection<Isolicitud>('Solicitudes', ref => ref.where('idviaje', '==', viajeId)).valueChanges({ idField: 'id' });
+  }
+
+  deleteSolicitud(solicitudId: string) {
+    return this.fire.collection<Isolicitud>('Solicitudes').doc(solicitudId).delete();
+  }
 
   getCollection(collectionName:string) {
     return this.fire.collection<Iviaje>(collectionName).valueChanges({ idField: 'id'});

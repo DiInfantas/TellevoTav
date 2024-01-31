@@ -1,6 +1,7 @@
 <!-- detail.page.html -->
 
 <!-- detail.page.html -->
+
 <head>
   <!-- ... otras etiquetas head ... -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
@@ -33,6 +34,15 @@
   <ion-content>
     <div id="map" style="height: 50%;"></div>
     <ion-button expand="full" color="light" (click)="editarViaje()">Editar Viaje</ion-button>
-  <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button> 
+    <ion-button (click)="eliminar()" expand="full" color="danger">Eliminar Viaje</ion-button>
+
+    <ion-list *ngIf="solicitudes.length > 0">
+      <ion-item *ngFor="let solicitud of solicitudes">
+        <!-- Mostrar información de la solicitud según tus necesidades -->
+        <ion-label>{{ solicitud.idpasajero }} - {{ solicitud.estado }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+
   </ion-content>
 </ion-content>

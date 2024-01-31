@@ -4,6 +4,7 @@ import { Iconductor } from 'src/app/interfaces/iconductor';
 import { Iviaje } from 'src/app/interfaces/iviaje';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import * as L from 'leaflet';
+import { Isolicitud } from 'src/app/interfaces/isolicitud';
 
 @Component({
   selector: 'app-driverdetail',
@@ -16,6 +17,7 @@ export class DriverdetailPage implements OnInit {
   }
   viaje: Iviaje = {} as Iviaje;
   usuario: Iconductor | undefined;
+  solicitudes: Isolicitud[] = [];
 
   constructor(
     private fire: CrudfirebaseService,
@@ -27,12 +29,19 @@ export class DriverdetailPage implements OnInit {
 
   ngOnInit() {
     const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
-    
+    this.getViaje(viajeId);
     console.log(viajeId);
+    this.getSolicitudes(viajeId);
   }
 
-  ionViewWillEnter() {
-    this.getViaje(); // Asegúrate de que no estás pasando ningún argumento aquí
+  async getSolicitudes(viajeId: string | null) {
+    if (viajeId) {
+      this.fire.getSolicitudesByViajeId(viajeId).subscribe((solicitudes) => {
+        this.solicitudes = solicitudes;
+      });
+    } else {
+      console.error('ID del viaje no definido.');
+    }
   }
 
   getId() {
@@ -54,12 +63,16 @@ export class DriverdetailPage implements OnInit {
     }
   }
   
-  getViaje() {
-    const viajeId = this.getId();
-    this.fire.getViajeById(viajeId).subscribe((viaje) => {
-      console.log(viaje);
-      this.viaje = viaje as Iviaje || {} as Iviaje;
-    });
+  getViaje(viajeId: string | null) {
+    if (viajeId) {
+      this.fire.getViajeById(viajeId).subscribe((viaje) => {
+        console.log(viaje);
+        this.viaje = viaje as Iviaje || {} as Iviaje;
+
+        // Obtener y mostrar el conductor del viaje
+        this.getUsuario();
+      });
+    }
   }
 
   eliminar() {
