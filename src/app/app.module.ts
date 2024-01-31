@@ -12,6 +12,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+//import { FirebaseService } from './services/firebase/authfireservice.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
 

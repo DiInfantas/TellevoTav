@@ -115,16 +115,35 @@ export class DetailPage implements OnInit {
   
   
   loadMap() {
-    const map = L.map('map').setView([51.505, -0.09], 13);
-
+    // Coordenadas de Santiago, Chile
+    const santiagoCoordinates: [number, number] = [-33.4489, -70.6693];
+  
+    const map = L.map('map').setView(santiagoCoordinates, 13);
+  
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
-
-    L.marker([51.505, -0.09]).addTo(map)
-      .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-      .openPopup();
+  
+    // Generar y mostrar 5 marcadores aleatorios en Santiago
+    for (let i = 0; i < 5; i++) {
+      const randomLat = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
+      const randomLng = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
+  
+      const markerCoordinates: [number, number] = [
+        santiagoCoordinates[0] + randomLat,
+        santiagoCoordinates[1] + randomLng
+      ];
+  
+      L.marker(markerCoordinates).addTo(map)
+        .bindPopup(`Random Location ${i + 1}`)
+        .openPopup();
+    }
   }
+  
+  getRandomCoordinate(min: number, max: number): number {
+    return Math.random() * (max - min) + min;
+  }
+  
 }
 
 
