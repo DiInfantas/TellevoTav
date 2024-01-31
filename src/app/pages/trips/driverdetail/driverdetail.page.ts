@@ -78,7 +78,7 @@ export class DriverdetailPage implements OnInit {
     }
   }
   loadMap() {
-    const map = L.map('map').setView([-33.5983603,-70.5834729], 17);
+    const map = L.map('map').setView([-33.5983603,-70.5834729], 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
