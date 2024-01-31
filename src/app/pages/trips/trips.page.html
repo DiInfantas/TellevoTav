@@ -10,6 +10,11 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-title>
+      Aqui podras ver y solicitar entrar a los viajes 😊
+    </ion-card-title>
+  </ion-card>
 
   <ion-list>
 
@@ -25,7 +30,6 @@
           
           <div class="ion-padding" slot="content">
             <ion-label>
-              <h3>Conductor:</h3>
               <h3>Hora de salida: {{ aux.horasalida }}</h3>
               <p>Asientos restantes:{{ aux.capacidad }}</p>
               <ion-badge color="medium" slot="end">{{ aux.precio }} CLP</ion-badge>

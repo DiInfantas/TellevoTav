@@ -13,12 +13,42 @@
 
   <ion-card>
     <ion-card-title>
-      Aqui podras ver y modificar tu viaje
+      Aqui podras ver y modificar tus viajes
     </ion-card-title>
     <ion-card-subtitle>
       O crear uno en el boton + de abajo 😊
     </ion-card-subtitle>
   </ion-card>
+
+  <ion-list>
+
+      <ion-accordion-group expand="inset">
+        <ion-accordion *ngFor="let viaje of viajes">
+          <ion-item slot="header">
+            <ion-avatar slot="start">
+              <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+            </ion-avatar>
+            <ion-label>{{ viaje.lugarinicio }} --> {{ viaje.destino }}</ion-label>
+            <ion-note slot="end">{{ viaje.horasalida }}</ion-note>
+          </ion-item>
+          
+          <div class="ion-padding" slot="content">
+            <ion-label>
+              <h3>Conductor:</h3>
+              <h3>Hora de salida: {{ viaje.horasalida }}</h3>
+              <p>Asientos restantes:{{ viaje.capacidad }}</p>
+              <ion-badge color="medium" slot="end">{{ viaje.precio }} CLP</ion-badge>
+            </ion-label>
+            
+            <br>
+            <ion-button  fill="outline" color="tertiary" slot="start" *ngIf="viaje.id" (click)="seeDetail(viaje.id)">Ver detalle</ion-button> 
+            
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+  </ion-list>
+
+
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="redireccionarAAdd()" color="black">
