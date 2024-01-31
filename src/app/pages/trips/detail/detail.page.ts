@@ -4,8 +4,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Iconductor } from 'src/app/interfaces/iconductor';
 import { Iviaje } from 'src/app/interfaces/iviaje';
+import { Isolicitud } from 'src/app/interfaces/isolicitud';
 import { CrudfirebaseService } from 'src/app/services/firebase/crudfirebase.service';
 import { AlertController } from '@ionic/angular';
+import { AuthfireserviceService } from 'src/app/services/firebase/authfireservice.service';
 import * as L from 'leaflet'; 
 
 
@@ -21,9 +23,11 @@ export class DetailPage implements OnInit {
   addressToSearch: string = "Nombre de la dirección";
   viaje: Iviaje = {} as Iviaje;
   usuario: Iconductor | undefined;
+  solicitudes: Isolicitud[] = [];
 
   constructor(
     private fire: CrudfirebaseService,
+    private authService: AuthfireserviceService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alertController: AlertController
@@ -32,11 +36,23 @@ export class DetailPage implements OnInit {
   ngOnInit() {
     const viajeId = this.activatedRoute.snapshot.paramMap.get('id');
     console.log(viajeId);
+    this.getSolicitudes(viajeId);
+  }
+  async getSolicitudes(viajeId: string | null) {
+    if (viajeId) {
+      this.fire.getSolicitudesByViajeId(viajeId).subscribe((solicitudes) => {
+        this.solicitudes = solicitudes;
+      });
+    } else {
+      console.error('ID del viaje no definido.');
+    }
   }
 
   ionViewDidEnter() {
     this.loadMap();
   }
+
+  
 
   ionViewWillEnter() {
     this.getViaje(this.getId());
@@ -48,6 +64,33 @@ export class DetailPage implements OnInit {
     let id = aux[3];
     return id;
   }
+
+  async solicitarAsiento() {
+  const alert = await this.alertController.create({
+    header: 'Confirmar',
+    message: '¿Estás seguro de que deseas solicitar un asiento?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        handler: () => {
+          console.log('Solicitud de asiento cancelada');
+        },
+      },
+      {
+        text: 'Solicitar',
+        handler: () => {
+          console.log('Solicitud de asiento realizada');
+          // Cambia la siguiente línea para utilizar la función correcta
+          this.fire.createSolicitud('Solicitudes', { idviaje: this.viaje.id || '', idpasajero: 'ID_DEL_PASAJERO', estado: 'pendiente' });
+        },
+      },
+    ],
+  });
+
+  await alert.present();
+}
+
 
   getUsuario() {
     if (this.viaje && this.viaje.idconductor) {
@@ -72,30 +115,7 @@ export class DetailPage implements OnInit {
     }
   }
 
-  async solicitarAsiento() {
-    const alert = await this.alertController.create({
-      header: 'Confirmar',
-      message: '¿Estás seguro de que deseas solicitar un asiento?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Solicitud de asiento cancelada');
-          },
-        },
-        {
-          text: 'Solicitar',
-          handler: () => {
-            console.log('Solicitud de asiento realizada');
-            // Agrega aquí la lógica para solicitar el asiento
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
+  
 
   getViaje(viajeId: string) {
     this.fire.getViajeById(viajeId).subscribe((viaje) => {
