@@ -146,5 +146,16 @@
     "@ionic/angular-toolkit:page": {
       "styleext": "scss"
     }
+  },
+  {
+    "rutas": {
+      "id_del_viaje": {
+        "coordenadas": [
+          {"latitud": 37.7749, "longitud": -122.4194},
+          {"latitud": 34.0522, "longitud": -118.2437},
+          // ... más coordenadas ...
+        ]
+      }
+    }
   }
 }

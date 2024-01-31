@@ -14,7 +14,7 @@
       <img src="assets/img/favlogo.png" alt="">
       <div style="padding-top: 7%;">
         <ion-title>¡Bienvenido a TeLLevoApp!</ion-title>
-        <br>
+        <br><br><br><br>
         <p>Ingrese sus datos</p>
       </div>
       
@@ -37,7 +37,26 @@
     <a [routerLink]="['/register']">Crear cuenta</a>
     <br>
     <a [routerLink]="['/resetpassword']">Olvidé mi contraseña</a>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="secondary" (click)="loadRandomProfiles()">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+    
     
   </div>
+   <!-- Lista de perfiles -->
+   <ion-list *ngIf="profiles.length > 0">
+    <ion-item *ngFor="let profile of profiles">
+      <ion-avatar slot="start">
+        <img [src]="profile.picture.thumbnail" alt="Avatar">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ profile.name.first }} {{ profile.name.last }}</h2>
+        <p>{{ profile.email }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
   
 </ion-content>
