@@ -6,4 +6,6 @@ export interface Iviaje {
     destino : string;
     horasalida : string;
     idconductor: string;
+    asientosdisponibles?: number;
+    //solicitudes?: SolicitudViaje[];
 }
