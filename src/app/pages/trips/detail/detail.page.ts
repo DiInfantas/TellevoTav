@@ -124,20 +124,31 @@ export class DetailPage implements OnInit {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
   
-    // Generar y mostrar 5 marcadores aleatorios en Santiago
-    for (let i = 0; i < 5; i++) {
-      const randomLat = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
-      const randomLng = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
+    // Generar y mostrar 2 ubicaciones aleatorias en Santiago
+    const location1 = this.generateRandomLocation(santiagoCoordinates);
+    const location2 = this.generateRandomLocation(santiagoCoordinates);
   
-      const markerCoordinates: [number, number] = [
-        santiagoCoordinates[0] + randomLat,
-        santiagoCoordinates[1] + randomLng
-      ];
+    // Agregar marcadores en las ubicaciones
+    const marker1 = L.marker(location1).addTo(map)
+      .bindPopup('Location 1')
+      .openPopup();
   
-      L.marker(markerCoordinates).addTo(map)
-        .bindPopup(`Random Location ${i + 1}`)
-        .openPopup();
-    }
+    const marker2 = L.marker(location2).addTo(map)
+      .bindPopup('Location 2')
+      .openPopup();
+  
+    // Crear una línea que simula un viaje entre las dos ubicaciones
+    const polyline = L.polyline([location1, location2], { color: 'blue', dashArray: '10, 5' }).addTo(map);
+  }
+  
+  generateRandomLocation(center: [number, number]): [number, number] {
+    const offsetLat = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
+    const offsetLng = this.getRandomCoordinate(-0.1, 0.1); // Ajusta el rango según tus necesidades
+  
+    return [
+      center[0] + offsetLat,
+      center[1] + offsetLng
+    ];
   }
   
   getRandomCoordinate(min: number, max: number): number {
